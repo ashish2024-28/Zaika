@@ -1253,30 +1253,41 @@ a{text-decoration:none;color:inherit;}
   display: flex; align-items: center; justify-content: center;
 }
 .qr-phone-mockup {
-  width: 260px;
-  background: #1C1916;
-  border-radius: 36px;
-  padding: 14px;
-  box-shadow: 0 24px 64px rgba(28,25,22,.25), 0 4px 16px rgba(28,25,22,.15);
   position: relative;
+  width: 280px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 24px 48px rgba(28,25,22,.35));
 }
-.qr-phone-notch {
-  width: 80px; height: 22px;
-  background: #1C1916;
-  border-radius: 0 0 14px 14px;
-  margin: 0 auto 10px;
-  position: relative; z-index: 2;
+
+/* iPhone SVG — clipped to top half */
+.qr-iphone-wrap {
+  position: relative;
+  width: 280px;
 }
-.qr-phone-screen {
-  background: #fff;
-  border-radius: 24px;
-  padding: 24px 20px;
-  text-align: center;
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,.06);
+.qr-iphone-svg {
+  width: 280px;
+  height: auto; /* viewBox 0 0 415 480 → ~324px tall at 280px wide */
+  display: block;
+}
+
+/* QR overlay centered in the iPhone screen */
+/* Screen starts at x=21, total width=415. At 280px display: scale=280/415=0.675
+   Screen x_offset = 21*0.675 ≈ 14px, screen width = 370*0.675 ≈ 250px
+   Status bar / dynamic island occupies ~60px scaled (17*0.675 + some padding) */
+.qr-over-screen {
+  position: absolute;
+  top: 60px;           /* below dynamic island at display scale */
+  left: 14px;          /* left edge of white screen area */
+  width: 250px;        /* width of white screen at display scale */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
 }
 .qr-scan-hint {
-  font-size: 13px; font-weight: 600; color: var(--ink-2);
-  margin-bottom: 16px;
+  font-size: 11px; font-weight: 600; color: var(--ink-2);
+  text-align: center; line-height: 1.4;
 }
 .qr-code-wrap {
   position: relative;
