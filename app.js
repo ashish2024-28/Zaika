@@ -9,6 +9,7 @@
 // ---- VEG TOGGLE STATE (3-cycle) ----
 // 0 = all, 1 = veg only, 2 = nonveg only
 var vegState = 0;
+var pendingCartItemId = null;  // holds item id while waiting for table selection
 
 window.onload = function() {
   parseXML();
@@ -94,6 +95,20 @@ function closeTableModal() {
   }, 230);
 }
 
+function showTableModalForCart() {
+  var t = document.getElementById('modalTitle'), s = document.getElementById('modalSub');
+  if (t) t.textContent = 'Select Your Table';
+  if (s) s.textContent = 'Choose your table to add items and place your order';
+  var grid = document.getElementById('tableGrid'), html = '';
+  TABLES.forEach(function(n) {
+    html += '<button class="table-btn" onclick="selectTable(' + n + ')" id="tbl-' + n + '">' +
+      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="10" rx="2"/><path d="M6 8V5a3 3 0 016 0v3M12 8V5a3 3 0 016 0v3"/></svg>' +
+      '<span>' + n + '</span></button>';
+  });
+  grid.innerHTML = html;
+  document.getElementById('tableModal').classList.remove('hidden');
+}
+
 function showTableModal() {
   var t = document.getElementById('modalTitle'), s = document.getElementById('modalSub');
   if (t) t.textContent = 'Select Your Table';
@@ -119,6 +134,20 @@ function selectTable(n) {
 function confirmTable() {
   if (!selectedTable) { document.getElementById('tableError').classList.remove('hidden'); return; }
   document.getElementById('tableModal').classList.add('hidden');
+
+  // If we were in the app already (came via browseMenuOnly), just update the table UI
+  var appWrapper = document.getElementById('appWrapper');
+  if (!appWrapper.classList.contains('hidden')) {
+    // Already in app — just update table display and fulfil pending cart add
+    setTableUI();
+    if (pendingCartItemId !== null) {
+      var pid = pendingCartItemId;
+      pendingCartItemId = null;
+      addToCart(pid, null);  // now selectedTable is set, will proceed normally
+    }
+    return;
+  }
+
   launchApp();
 }
 
@@ -328,12 +357,19 @@ function addToCart(id, evt) {
   menuItems.forEach(function(m){ if(m.id===id) item=m; });
   if (!item) return;
 
+  // If user came via "Explore Menu" without selecting a table, ask now
+  if (!selectedTable) {
+    pendingCartItemId = id;
+    showTableModalForCart();
+    return;
+  }
+
   var found = false;
   cart.forEach(function(c){ if(c.id===id){c.qty++;found=true;} });
   if (!found) cart.push({id:item.id,name:item.name,price:item.price,photo:item.photo,type:item.type,qty:1});
 
   updateCartBadge();
-  patchCardQty(id);     // ← patch only the changed card, NO scroll reset
+  patchCardQty(id);
   showToast(item.name, item.price);
 }
 
