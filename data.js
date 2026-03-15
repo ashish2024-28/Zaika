@@ -40,12 +40,12 @@ const XML_DATA = `<?xml version="1.0" encoding="UTF-8"?>
     <item id="7" category="main-course" type="veg" recommended="false" mostOrdered="true">
       <n>Dal Makhani</n><price>190</price>
       <desc>Slow-cooked black lentils in velvety butter and tomato sauce</desc>
-      <photo>https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=400&q=80</photo>
+      <photo>https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&amp;q=80</photo>
     </item>
     <item id="8" category="main-course" type="veg" recommended="false" mostOrdered="true">
       <n>Butter Naan</n><price>50</price>
       <desc>Soft tandoor-baked flatbread brushed generously with salted butter</desc>
-      <photo>https://images.unsplash.com/photo-1613145993481-8c8f6c9f9b5b?w=400&q=80</photo>
+      <photo>https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=400&amp;q=80</photo>
     </item>
     <item id="9" category="main-course" type="nonveg" recommended="true" mostOrdered="false">
       <n>Mutton Rogan Josh</n><price>320</price>
@@ -65,7 +65,7 @@ const XML_DATA = `<?xml version="1.0" encoding="UTF-8"?>
     <item id="12" category="drinks" type="veg" recommended="true" mostOrdered="false">
       <n>Mango Lassi</n><price>100</price>
       <desc>Alphonso mango blended with creamy yogurt, lightly sweetened</desc>
-      <photo>https://images.unsplash.com/photo-1625944525533-473f1fcbf4c1?w=400&q=80</photo>
+      <photo>https://images.unsplash.com/photo-1605197161470-5d4f3b75f684?w=400&amp;q=80</photo>
     </item>
     <item id="13" category="drinks" type="veg" recommended="false" mostOrdered="false">
       <n>Masala Chai</n><price>60</price>
@@ -80,7 +80,7 @@ const XML_DATA = `<?xml version="1.0" encoding="UTF-8"?>
     <item id="15" category="desserts" type="veg" recommended="true" mostOrdered="true">
       <n>Gulab Jamun</n><price>80</price>
       <desc>Soft milk dumplings soaked in rose-cardamom syrup, served warm</desc>
-      <photo>https://images.unsplash.com/photo-1603532648955-039310d9ed75?w=400&q=80</photo>
+      <photo>https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&amp;q=80</photo>
     </item>
     <item id="16" category="desserts" type="veg" recommended="false" mostOrdered="false">
       <n>Rasgulla</n><price>70</price>
@@ -95,7 +95,7 @@ const XML_DATA = `<?xml version="1.0" encoding="UTF-8"?>
     <item id="18" category="snacks" type="veg" recommended="false" mostOrdered="true">
       <n>Samosa</n><price>60</price>
       <desc>Crispy pastry filled with spiced potatoes, served with tamarind chutney</desc>
-      <photo>https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=400&q=80</photo>
+      <photo>https://images.unsplash.com/photo-1601050690117-94f5f7a7b3fe?w=400&amp;q=80</photo>
     </item>
     <item id="19" category="snacks" type="nonveg" recommended="false" mostOrdered="false">
       <n>Chicken Sandwich</n><price>160</price>
