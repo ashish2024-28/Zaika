@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zaika>
+  <menu>
+
+    <!-- STARTERS -->
+    <item id="1" category="starters" type="veg" recommended="true" mostOrdered="false">
+      <name>Paneer Tikka</name>
+      <price>180</price>
+      <desc>Grilled cottage cheese cubes marinated in yogurt and aromatic spices, served with mint chutney</desc>
+      <icon>P</icon>
+    </item>
+    <item id="2" category="starters" type="nonveg" recommended="false" mostOrdered="true">
+      <name>Chicken Tikka</name>
+      <price>220</price>
+      <desc>Tender chicken pieces in rich aromatic spice blend, char-grilled to perfection</desc>
+      <icon>C</icon>
+    </item>
+    <item id="3" category="starters" type="veg" recommended="false" mostOrdered="false">
+      <name>Veg Spring Rolls</name>
+      <price>140</price>
+      <desc>Crispy golden rolls filled with seasoned fresh vegetables and herbs</desc>
+      <icon>V</icon>
+    </item>
+    <item id="4" category="starters" type="nonveg" recommended="true" mostOrdered="false">
+      <name>Seekh Kebab</name>
+      <price>260</price>
+      <desc>Juicy minced mutton kebabs on skewers, seasoned with ginger, garlic, and garam masala</desc>
+      <icon>S</icon>
+    </item>
+
+    <!-- MAIN COURSE -->
+    <item id="5" category="main-course" type="veg" recommended="true" mostOrdered="true">
+      <name>Paneer Butter Masala</name>
+      <price>220</price>
+      <desc>Soft paneer cubes simmered in a rich tomato-butter gravy with cream and kasuri methi</desc>
+      <icon>P</icon>
+    </item>
+    <item id="6" category="main-course" type="nonveg" recommended="true" mostOrdered="true">
+      <name>Chicken Biryani</name>
+      <price>260</price>
+      <desc>Aromatic long-grain basmati rice layered with spiced chicken, saffron, and caramelised onions</desc>
+      <icon>B</icon>
+    </item>
+    <item id="7" category="main-course" type="veg" recommended="false" mostOrdered="true">
+      <name>Dal Makhani</name>
+      <price>190</price>
+      <desc>Slow-cooked black lentils in a velvety butter and tomato sauce, finished with fresh cream</desc>
+      <icon>D</icon>
+    </item>
+    <item id="8" category="main-course" type="veg" recommended="false" mostOrdered="true">
+      <name>Butter Naan</name>
+      <price>50</price>
+      <desc>Soft leavened flatbread baked in a tandoor oven, brushed generously with salted butter</desc>
+      <icon>N</icon>
+    </item>
+    <item id="9" category="main-course" type="nonveg" recommended="true" mostOrdered="false">
+      <name>Mutton Rogan Josh</name>
+      <price>320</price>
+      <desc>Kashmiri-style slow-cooked mutton in a bold, deeply spiced aromatic gravy</desc>
+      <icon>M</icon>
+    </item>
+    <item id="10" category="main-course" type="veg" recommended="false" mostOrdered="false">
+      <name>Veg Biryani</name>
+      <price>200</price>
+      <desc>Fragrant basmati rice cooked with seasonal vegetables, whole spices, and fresh herbs</desc>
+      <icon>V</icon>
+    </item>
+
+    <!-- DRINKS -->
+    <item id="11" category="drinks" type="veg" recommended="false" mostOrdered="true">
+      <name>Cold Coffee</name>
+      <price>120</price>
+      <desc>Chilled espresso blended with milk, ice cream, and chocolate syrup</desc>
+      <icon>C</icon>
+    </item>
+    <item id="12" category="drinks" type="veg" recommended="true" mostOrdered="false">
+      <name>Mango Lassi</name>
+      <price>100</price>
+      <desc>Alphonso mango blended with creamy yogurt, chilled and lightly sweetened</desc>
+      <icon>L</icon>
+    </item>
+    <item id="13" category="drinks" type="veg" recommended="false" mostOrdered="false">
+      <name>Masala Chai</name>
+      <price>60</price>
+      <desc>Spiced Indian tea brewed with ginger, cardamom, and fresh milk</desc>
+      <icon>T</icon>
+    </item>
+    <item id="14" category="drinks" type="veg" recommended="false" mostOrdered="false">
+      <name>Fresh Lime Soda</name>
+      <price>80</price>
+      <desc>Freshly squeezed lime with sparkling water, mint, and a touch of salt or sugar</desc>
+      <icon>F</icon>
+    </item>
+
+    <!-- DESSERTS -->
+    <item id="15" category="desserts" type="veg" recommended="true" mostOrdered="true">
+      <name>Gulab Jamun</name>
+      <price>80</price>
+      <desc>Soft fried milk-solid dumplings soaked in rose-cardamom sugar syrup, served warm</desc>
+      <icon>G</icon>
+    </item>
+    <item id="16" category="desserts" type="veg" recommended="false" mostOrdered="false">
+      <name>Rasgulla</name>
+      <price>70</price>
+      <desc>Spongy cottage cheese balls cooked in light sugar syrup, chilled and refreshing</desc>
+      <icon>R</icon>
+    </item>
+    <item id="17" category="desserts" type="veg" recommended="true" mostOrdered="false">
+      <name>Chocolate Brownie</name>
+      <price>150</price>
+      <desc>Warm fudgy dark chocolate brownie served with a scoop of vanilla bean ice cream</desc>
+      <icon>B</icon>
+    </item>
+
+    <!-- SNACKS -->
+    <item id="18" category="snacks" type="veg" recommended="false" mostOrdered="true">
+      <name>Samosa</name>
+      <price>60</price>
+      <desc>Crispy pastry filled with spiced potatoes and green peas, served with tamarind chutney</desc>
+      <icon>S</icon>
+    </item>
+    <item id="19" category="snacks" type="nonveg" recommended="false" mostOrdered="false">
+      <name>Chicken Sandwich</name>
+      <price>160</price>
+      <desc>Grilled chicken breast with fresh lettuce, tomato, and herb mayo on toasted bread</desc>
+      <icon>C</icon>
+    </item>
+    <item id="20" category="snacks" type="veg" recommended="false" mostOrdered="true">
+      <name>Masala Fries</name>
+      <price>100</price>
+      <desc>Golden crispy fries tossed in a signature Indian spice blend with chaat masala</desc>
+      <icon>F</icon>
+    </item>
+
+  </menu>
+
+  <categories>
+    <category id="all" label="All Items" />
+    <category id="starters" label="Starters" />
+    <category id="main-course" label="Main Course" />
+    <category id="drinks" label="Drinks" />
+    <category id="desserts" label="Desserts" />
+    <category id="snacks" label="Snacks" />
+  </categories>
+
+  <settings>
+    <restaurantName>Zaika</restaurantName>
+    <tagline>Fresh Food, Faster Service.</tagline>
+    <nextId>21</nextId>
+  </settings>
+</zaika>

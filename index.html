@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zaika — Fine Dining Experience</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- ============ TABLE SELECTION MODAL ============ -->
+<div id="tableModal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <div class="modal-brand">
+      <div class="brand-mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="M200-120v-400q-33 0-56.5-23.5T120-600v-212q0-12 8-20t20-8q12 0 20 8t8 20v132h36v-132q0-12 8-20t20-8q12 0 20 8t8 20v132h36v-132q0-12 8-20t20-8q12 0 20 8t8 20v212q0 33-23.5 56.5T280-520v400h-80Zm280 0v-404q-42-20-61-62.5T400-676q0-63 31.5-113.5T520-840q57 0 88.5 50.5T640-676q0 47-19 89.5T560-524v404h-80Zm200 0v-720q66 0 113 47t47 113v240h-80v320h-80Z"/></svg></div>
+      <span class="brand-name">Zaika</span>
+    </div>
+    <h2 class="modal-title" id="modalTitle">Select Your Table</h2>
+    <p class="modal-sub" id="modalSub">Choose your table number to begin ordering</p>
+    <div class="table-grid" id="tableGrid"></div>
+    <div id="tableError" class="err-msg hidden">Please select a table to continue.</div>
+    <button class="btn-primary full" onclick="confirmTable()">Continue to Menu</button>
+  </div>
+</div>
+
+<!-- ============ LANDING PAGE ============ -->
+<div id="landingPage">
+  <nav class="land-nav">
+    <div class="land-nav-inner">
+      <div class="brand">
+        <div class="brand-mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="M200-120v-400q-33 0-56.5-23.5T120-600v-212q0-12 8-20t20-8q12 0 20 8t8 20v132h36v-132q0-12 8-20t20-8q12 0 20 8t8 20v132h36v-132q0-12 8-20t20-8q12 0 20 8t8 20v212q0 33-23.5 56.5T280-520v400h-80Zm280 0v-404q-42-20-61-62.5T400-676q0-63 31.5-113.5T520-840q57 0 88.5 50.5T640-676q0 47-19 89.5T560-524v404h-80Zm200 0v-720q66 0 113 47t47 113v240h-80v320h-80Z"/></svg></div>
+        <span class="brand-name">Zaika</span>
+      </div>
+      <div class="land-nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#" onclick="openAdminFromLanding(); return false;" class="nav-admin-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Admin
+        </a>
+      </div>
+      <div class="land-nav-actions">
+        <button class="btn-cta-nav" onclick="enterRestaurant()">Order Now</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg-lines"></div>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-eyebrow">Est. 2024 &nbsp;·&nbsp; Table Service</div>
+        <h1 class="hero-h1">Exceptional<br/>Dining,<br/><em>Delivered.</em></h1>
+        <p class="hero-p">Browse our curated menu, place your order instantly, and enjoy freshly prepared dishes right at your table.</p>
+        <div class="hero-btns">
+          <button class="btn-primary-lg" onclick="enterRestaurant()">
+            Explore the Menu
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <a href="#how-it-works" class="btn-ghost-lg">How It Works</a>
+        </div>
+        <div class="hero-metrics">
+          <div class="hm-item"><span class="hm-v">50+</span><span class="hm-l">Dishes</span></div>
+          <div class="hm-div"></div>
+          <div class="hm-item"><span class="hm-v">4.9</span><span class="hm-l">Rating</span></div>
+          <div class="hm-div"></div>
+          <div class="hm-item"><span class="hm-v">12 min</span><span class="hm-l">Avg Service</span></div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="dish-cards">
+          <div class="dc dc-3">
+            <div class="dc-tag">Most Ordered</div>
+            <div class="dc-name">Chicken Biryani</div>
+            <div class="dc-p">₹260</div>
+          </div>
+          <div class="dc dc-2">
+            <div class="dc-tag">Chef's Pick</div>
+            <div class="dc-name">Paneer Butter Masala</div>
+            <div class="dc-p">₹220</div>
+          </div>
+          <div class="dc dc-1">
+            <div class="dc-spotlight">Today's Special</div>
+            <div class="dc-name-lg">Mutton Rogan Josh</div>
+            <div class="dc-desc">Kashmiri slow-cooked style</div>
+            <div class="dc-price-lg">₹320</div>
+            <button class="dc-btn" onclick="enterRestaurant()">Order Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="#features" class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></a>
+  </section>
+
+  <section class="feat-section" id="features">
+    <div class="sc">
+      <div class="sec-eyebrow">Why Choose Zaika</div>
+      <h2 class="sec-h2">A Better Way to Dine</h2>
+      <p class="sec-p">Every aspect of your dining experience is designed to be seamless, fast, and enjoyable.</p>
+      <div class="feat-grid">
+        <div class="feat-card" style="--fd:0s"><div class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><h3>Fast Service</h3><p>Orders go directly to the kitchen. Average preparation under 12 minutes.</p></div>
+        <div class="feat-card" style="--fd:0.07s"><div class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><h3>Fresh Ingredients</h3><p>Locally sourced quality ingredients, prepared fresh to order daily.</p></div>
+        <div class="feat-card" style="--fd:0.14s"><div class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><h3>Easy Ordering</h3><p>Browse, filter, and order in under 30 seconds — no app needed.</p></div>
+        <div class="feat-card" style="--fd:0.21s"><div class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><h3>Live Tracking</h3><p>Know exactly when food is being prepared and ready to serve.</p></div>
+        <div class="feat-card" style="--fd:0.28s"><div class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></div><h3>Curated Menu</h3><p>Chef-curated dishes spanning starters, mains, drinks and desserts.</p></div>
+        <div class="feat-card" style="--fd:0.35s"><div class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Hygiene First</h3><p>Food safety certified kitchen, inspected and maintained daily.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hiw-section" id="how-it-works">
+    <div class="sc">
+      <div class="sec-eyebrow">The Process</div>
+      <h2 class="sec-h2">How It Works</h2>
+      <p class="sec-p">Ordering is as simple as three steps. No waiters, no delays.</p>
+      <div class="hiw-track">
+        <div class="hiw-item"><div class="hiw-num">01</div><div class="hiw-body"><h3>Select Your Table</h3><p>Choose your table number when you arrive. All orders will be delivered directly to your table — no need to call a waiter.</p></div></div>
+        <div class="hiw-line"></div>
+        <div class="hiw-item"><div class="hiw-num">02</div><div class="hiw-body"><h3>Browse &amp; Order</h3><p>Filter by category, dietary preference, or search. Add dishes to your cart and review before confirming.</p></div></div>
+        <div class="hiw-line"></div>
+        <div class="hiw-item"><div class="hiw-num">03</div><div class="hiw-body"><h3>Track &amp; Enjoy</h3><p>Get a unique Order ID and watch it progress live — from kitchen to your table in minutes.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-sec" id="menu-preview">
+    <div class="sc">
+      <div class="sec-eyebrow">A Glimpse</div>
+      <h2 class="sec-h2">Popular Dishes</h2>
+      <p class="sec-p">A curated selection from our kitchen — the full menu awaits inside.</p>
+      <div class="preview-grid" id="previewGrid"></div>
+      <div class="preview-foot">
+        <button class="btn-primary-lg" onclick="enterRestaurant()">
+          View Full Menu
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="land-foot">
+    <div class="lf-inner">
+      <div class="brand"><div class="brand-mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="M200-120v-400q-33 0-56.5-23.5T120-600v-212q0-12 8-20t20-8q12 0 20 8t8 20v132h36v-132q0-12 8-20t20-8q12 0 20 8t8 20v132h36v-132q0-12 8-20t20-8q12 0 20 8t8 20v212q0 33-23.5 56.5T280-520v400h-80Zm280 0v-404q-42-20-61-62.5T400-676q0-63 31.5-113.5T520-840q57 0 88.5 50.5T640-676q0 47-19 89.5T560-524v404h-80Zm200 0v-720q66 0 113 47t47 113v240h-80v320h-80Z"/></svg></div><span class="brand-name">Zaika</span></div>
+      <p>© 2024 Zaika Restaurant. All rights reserved.</p>
+    </div>
+  </footer>
+</div><!-- /landingPage -->
+
+
+<!-- ============ APP WRAPPER ============ -->
+<div id="appWrapper" class="hidden">
+
+  
+<!-- VEG / NON-VEG FLOATING SIDEBAR -->
+
+<header class="app-hdr">
+    <div class="app-hdr-in">
+      <div class="hdr-left"><button class="hdr-home-btn" onclick="returnToLanding()" title="Back to Home"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button><div class="brand sm"><div class="brand-mark sm"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="M200-120v-400q-33 0-56.5-23.5T120-600v-212q0-12 8-20t20-8q12 0 20 8t8 20v132h36v-132q0-12 8-20t20-8q12 0 20 8t8 20v132h36v-132q0-12 8-20t20-8q12 0 20 8t8 20v212q0 33-23.5 56.5T280-520v400h-80Zm280 0v-404q-42-20-61-62.5T400-676q0-63 31.5-113.5T520-840q57 0 88.5 50.5T640-676q0 47-19 89.5T560-524v404h-80Zm200 0v-720q66 0 113 47t47 113v240h-80v320h-80Z"/></svg></div><span class="brand-name">Zaika</span></div></div>
+      <div class="hdr-right" id="hdrRight">
+        <div class="hdr-table-chip user-only" id="hdrTableChip">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="8" width="18" height="10" rx="2"/><path d="M6 8V5a3 3 0 016 0v3M12 8V5a3 3 0 016 0v3"/></svg>
+          Table <strong id="hdrTableNum">—</strong>
+        </div>
+        <button class="hdr-cart-btn user-only" onclick="openCart()">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Cart
+          <span class="cart-badge hidden" id="cartCount">0</span>
+        </button>
+        <button class="hdr-back-menu-btn admin-only hidden" onclick="adminLogout()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Exit Admin
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MENU PAGE -->
+  <div class="app-page active-page" id="menuPage">
+    <div class="menu-hero-strip">
+      <div class="mhs-in">
+        <div class="mhs-text">
+          <h2>Our Menu</h2>
+          <p>Freshly prepared — ordering from <span class="mhs-table" id="menuTableLabel">Table —</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar-wrap">
+      <div class="filter-bar-in">
+
+        <!-- Row 1: Search + Veg Toggle -->
+        <div class="filter-row-top">
+
+          <div class="menu-search-box">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="text" id="searchInput" placeholder="Search dishes, ingredients..." oninput="filterMenuOnly()"/>
+          </div>
+
+          <div class="veg-toggle-wrap">
+            <div class="veg-toggle-switch" id="vegToggleSwitch" onclick="cycleVegToggle()">
+              <div class="vts-track" id="vtsTrack">
+                <div class="vts-thumb" id="vtsThumb"></div>
+              </div>
+            </div>
+            <span class="veg-toggle-label" id="vegToggleLabel">Veg Mode</span>
+          </div>
+
+        </div>
+
+        <!-- Row 2: Category pills -->
+        <div class="cat-pill-row" id="categoryPills"></div>
+      </div>
+    </div>
+
+    <div class="menu-body">
+      <div class="ms" id="recommendedSection">
+        <div class="ms-hd"><h3>Recommended</h3></div>
+        <div class="hscroll" id="recommendedGrid"></div>
+      </div>
+      <div class="ms" id="mostOrderedSection">
+        <div class="ms-hd"><h3>Most Ordered</h3></div>
+        <div class="hscroll" id="mostOrderedGrid"></div>
+      </div>
+      <div class="ms">
+        <div class="ms-hd"><h3>Full Menu</h3></div>
+        <div class="menu-grid" id="menuGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CART PAGE -->
+  <div class="app-page hidden" id="cartPage">
+    <div class="ipage">
+      <div class="ip-hd">
+        <button class="back-btn" onclick="goToMenu()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Menu
+        </button>
+        <h2>Your Cart</h2>
+        <div class="cart-table-badge" id="cartTableBadge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="8" width="18" height="10" rx="2"/><path d="M6 8V5a3 3 0 016 0v3M12 8V5a3 3 0 016 0v3"/></svg>
+          Table <span id="cartTableNum">—</span>
+        </div>
+      </div>
+      <div id="cartEmpty" class="empty-st hidden">
+        <div class="est-ico"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
+        <h3>Your cart is empty</h3>
+        <p>Add dishes from the menu to begin your order</p>
+        <button class="btn-primary" onclick="goToMenu()">Browse Menu</button>
+      </div>
+      <div id="cartItemsList"></div>
+      <div id="cartFooter" class="cart-foot hidden">
+        <div class="cf-line"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+        <div class="cf-line total-line"><span>Total</span><span id="cartTotal">₹0</span></div>
+        <button class="btn-primary full" onclick="placeOrder()">Place Order</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONFIRM PAGE -->
+  <div class="app-page hidden" id="confirmPage">
+    <div class="cpage">
+      <div class="cbox">
+        <div class="cbox-check">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h2>Order Confirmed</h2>
+        <p class="cbox-sub">Your order has been received and is being prepared.</p>
+        <div class="cbox-meta-row">
+          <div class="cbox-meta-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6M12 9v6"/><circle cx="12" cy="12" r="10"/></svg>
+            Order ID &mdash; <strong id="orderId"></strong>
+          </div>
+          <div class="cbox-meta-item accent">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="10" rx="2"/><path d="M6 8V5a3 3 0 016 0v3M12 8V5a3 3 0 016 0v3"/></svg>
+            Table &mdash; <strong id="confirmTable"></strong>
+          </div>
+        </div>
+        <div class="cbox-items" id="confirmItems"></div>
+        <div class="cbox-total">Total: <strong id="confirmTotal"></strong></div>
+        <div class="cbox-btns">
+          <button class="btn-primary" onclick="trackOrder()">Track Order</button>
+          <button class="btn-outline" onclick="goToMenu()">Order More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRACK PAGE -->
+  <div class="app-page hidden" id="trackPage">
+    <div class="ipage">
+      <div class="ip-hd">
+        <button class="back-btn" onclick="goToMenu()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Menu
+        </button>
+        <h2>Track Order</h2>
+      </div>
+      <!-- CHEF ILLUSTRATION -->
+      <div class="chef-scene" id="chefScene">
+        <svg class="chef-svg" viewBox="0 0 520 180" xmlns="http://www.w3.org/2000/svg" fill="none">
+
+          <!-- Background kitchen shelf -->
+          <rect x="0" y="140" width="520" height="4" rx="2" fill="#E4DED6"/>
+
+          <!-- Hanging pots (left) -->
+          <line x1="60" y1="0" x2="60" y2="30" stroke="#E4DED6" stroke-width="1.5"/>
+          <ellipse cx="60" cy="38" rx="14" ry="8" fill="#D4C8BE" stroke="#9C8F84" stroke-width="1.5"/>
+          <rect x="46" y="32" width="28" height="18" rx="3" fill="#D4C8BE" stroke="#9C8F84" stroke-width="1.5"/>
+          <line x1="68" y1="37" x2="78" y2="37" stroke="#9C8F84" stroke-width="2" stroke-linecap="round"/>
+
+          <line x1="110" y1="0" x2="110" y2="25" stroke="#E4DED6" stroke-width="1.5"/>
+          <ellipse cx="110" cy="33" rx="12" ry="7" fill="#C4B8AE" stroke="#9C8F84" stroke-width="1.5"/>
+          <rect x="98" y="28" width="24" height="16" rx="3" fill="#C4B8AE" stroke="#9C8F84" stroke-width="1.5"/>
+          <line x1="116" y1="32" x2="124" y2="32" stroke="#9C8F84" stroke-width="2" stroke-linecap="round"/>
+
+          <!-- Hanging pots (right) -->
+          <line x1="440" y1="0" x2="440" y2="28" stroke="#E4DED6" stroke-width="1.5"/>
+          <ellipse cx="440" cy="36" rx="13" ry="7" fill="#D4C8BE" stroke="#9C8F84" stroke-width="1.5"/>
+          <rect x="427" y="30" width="26" height="17" rx="3" fill="#D4C8BE" stroke="#9C8F84" stroke-width="1.5"/>
+          <line x1="434" y1="35" x2="424" y2="35" stroke="#9C8F84" stroke-width="2" stroke-linecap="round"/>
+
+          <line x1="490" y1="0" x2="490" y2="22" stroke="#E4DED6" stroke-width="1.5"/>
+          <ellipse cx="490" cy="30" rx="11" ry="6" fill="#C4B8AE" stroke="#9C8F84" stroke-width="1.5"/>
+          <rect x="479" y="25" width="22" height="14" rx="3" fill="#C4B8AE" stroke="#9C8F84" stroke-width="1.5"/>
+          <line x1="485" y1="29" x2="475" y2="29" stroke="#9C8F84" stroke-width="2" stroke-linecap="round"/>
+
+          <!-- Stove / counter -->
+          <rect x="150" y="110" width="220" height="30" rx="6" fill="#E4DED6" stroke="#9C8F84" stroke-width="1.5"/>
+          <ellipse cx="195" cy="110" rx="22" ry="5" fill="#D4C8BE" stroke="#9C8F84" stroke-width="1.5"/>
+          <ellipse cx="325" cy="110" rx="22" ry="5" fill="#D4C8BE" stroke="#9C8F84" stroke-width="1.5"/>
+          <!-- Stove dials -->
+          <circle cx="190" cy="122" r="5" fill="#9C8F84"/>
+          <circle cx="207" cy="122" r="5" fill="#9C8F84"/>
+          <circle cx="313" cy="122" r="5" fill="#9C8F84"/>
+          <circle cx="330" cy="122" r="5" fill="#9C8F84"/>
+
+          <!-- Pan on left burner -->
+          <ellipse cx="195" cy="108" rx="26" ry="7" fill="#C0533A" stroke="#A84330" stroke-width="1.5"/>
+          <rect x="217" y="103" width="30" height="5" rx="2.5" fill="#9C8F84"/>
+
+          <!-- Pan on right burner -->
+          <ellipse cx="325" cy="108" rx="26" ry="7" fill="#5C534A" stroke="#2B2B2B" stroke-width="1.5"/>
+          <rect x="299" y="103" width="30" height="5" rx="2.5" fill="#9C8F84"/>
+
+          <!-- STEAM from left pan -->
+          <path class="steam-l1" d="M185 100 Q182 90 185 82 Q188 74 185 66" stroke="#D4C8BE" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.7"/>
+          <path class="steam-l2" d="M195 98 Q192 88 195 80 Q198 72 195 64" stroke="#D4C8BE" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.5"/>
+          <path class="steam-l3" d="M205 100 Q208 90 205 82 Q202 74 205 66" stroke="#D4C8BE" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6"/>
+
+          <!-- STEAM from right pan -->
+          <path class="steam-r1" d="M315 100 Q312 90 315 82 Q318 74 315 66" stroke="#D4C8BE" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.7"/>
+          <path class="steam-r2" d="M325 98 Q322 88 325 80 Q328 72 325 64" stroke="#D4C8BE" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.5"/>
+          <path class="steam-r3" d="M335 100 Q338 90 335 82 Q332 74 335 66" stroke="#D4C8BE" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6"/>
+
+          <!-- ===== CHEF LEFT ===== -->
+          <!-- Chef hat -->
+          <rect x="158" y="22" width="28" height="10" rx="3" fill="#F7F5F2" stroke="#E4DED6" stroke-width="1.2"/>
+          <ellipse cx="172" cy="22" rx="16" ry="14" fill="#F7F5F2" stroke="#E4DED6" stroke-width="1.2"/>
+          <!-- Chef head -->
+          <ellipse cx="172" cy="52" rx="16" ry="18" fill="#F5E6D3" stroke="#E4D5C0" stroke-width="1.2"/>
+          <!-- Chef face -->
+          <ellipse cx="167" cy="50" rx="2.5" ry="3" fill="#5C534A"/>
+          <ellipse cx="177" cy="50" rx="2.5" ry="3" fill="#5C534A"/>
+          <path d="M167 58 Q172 63 177 58" stroke="#5C534A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <!-- Chef body -->
+          <rect x="154" y="70" width="36" height="44" rx="8" fill="#F7F5F2" stroke="#E4DED6" stroke-width="1.2"/>
+          <!-- Chef buttons -->
+          <circle cx="172" cy="80" r="2" fill="#E4DED6"/>
+          <circle cx="172" cy="90" r="2" fill="#E4DED6"/>
+          <!-- Left arm (holding ladle, animated) -->
+          <g class="chef-arm-l">
+            <rect x="143" y="72" width="12" height="28" rx="6" fill="#F7F5F2" stroke="#E4DED6" stroke-width="1.2"/>
+            <line x1="149" y1="100" x2="149" y2="112" stroke="#9C8F84" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="149" cy="116" r="5" fill="#C0533A" stroke="#A84330" stroke-width="1.2"/>
+          </g>
+          <!-- Right arm (stirring, animated) -->
+          <g class="chef-arm-r">
+            <rect x="190" y="72" width="12" height="30" rx="6" fill="#F7F5F2" stroke="#E4DED6" stroke-width="1.2"/>
+          </g>
+          <!-- Chef legs -->
+          <rect x="158" y="112" width="12" height="28" rx="6" fill="#5C534A"/>
+          <rect x="174" y="112" width="12" height="28" rx="6" fill="#5C534A"/>
+
+          <!-- ===== CHEF RIGHT ===== -->
+          <!-- Chef hat -->
+          <rect x="334" y="22" width="28" height="10" rx="3" fill="#F7F5F2" stroke="#E4DED6" stroke-width="1.2"/>
+          <ellipse cx="348" cy="22" rx="16" ry="14" fill="#F7F5F2" stroke="#E4DED6" stroke-width="1.2"/>
+          <!-- Chef head -->
+          <ellipse cx="348" cy="52" rx="16" ry="18" fill="#F5E6D3" stroke="#E4D5C0" stroke-width="1.2"/>
+          <!-- Chef face -->
+          <ellipse cx="343" cy="50" rx="2.5" ry="3" fill="#5C534A"/>
+          <ellipse cx="353" cy="50" rx="2.5" ry="3" fill="#5C534A"/>
+          <path d="M343 58 Q348 63 353 58" stroke="#5C534A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <!-- Chef body -->
+          <rect x="330" y="70" width="36" height="44" rx="8" fill="#F7F5F2" stroke="#E4DED6" stroke-width="1.2"/>
+          <!-- Chef buttons -->
+          <circle cx="348" cy="80" r="2" fill="#E4DED6"/>
+          <circle cx="348" cy="90" r="2" fill="#E4DED6"/>
+          <!-- Right arm (holding bowl, animated) -->
+          <g class="chef2-arm-r">
+            <rect x="365" y="72" width="12" height="28" rx="6" fill="#F7F5F2" stroke="#E4DED6" stroke-width="1.2"/>
+            <line x1="371" y1="100" x2="371" y2="112" stroke="#9C8F84" stroke-width="3" stroke-linecap="round"/>
+            <ellipse cx="371" cy="117" rx="9" ry="5" fill="#C0533A" stroke="#A84330" stroke-width="1.2"/>
+          </g>
+          <!-- Left arm (stirring, animated) -->
+          <g class="chef2-arm-l">
+            <rect x="319" y="72" width="12" height="30" rx="6" fill="#F7F5F2" stroke="#E4DED6" stroke-width="1.2"/>
+          </g>
+          <!-- Chef legs -->
+          <rect x="334" y="112" width="12" height="28" rx="6" fill="#5C534A"/>
+          <rect x="350" y="112" width="12" height="28" rx="6" fill="#5C534A"/>
+
+          <!-- Decorative spice jars on shelf -->
+          <rect x="30" y="108" width="16" height="28" rx="4" fill="#C0533A" stroke="#A84330" stroke-width="1.2"/>
+          <rect x="50" y="112" width="14" height="24" rx="4" fill="#5C534A" stroke="#2B2B2B" stroke-width="1.2"/>
+          <rect x="68" y="116" width="12" height="20" rx="4" fill="#9C8F84" stroke="#7C7068" stroke-width="1.2"/>
+
+          <rect x="420" y="108" width="16" height="28" rx="4" fill="#9C8F84" stroke="#7C7068" stroke-width="1.2"/>
+          <rect x="440" y="112" width="14" height="24" rx="4" fill="#C0533A" stroke="#A84330" stroke-width="1.2"/>
+          <rect x="458" y="116" width="12" height="20" rx="4" fill="#5C534A" stroke="#2B2B2B" stroke-width="1.2"/>
+
+          <!-- Floor line -->
+          <rect x="0" y="144" width="520" height="2" rx="1" fill="#E4DED6"/>
+        </svg>
+
+        <!-- Text below illustration -->
+        <div class="chef-caption">
+          <div class="chef-caption-dot"></div>
+          <span id="chefCaptionText">Our chefs are preparing your order…</span>
+        </div>
+      </div>
+
+      <div class="track-card">
+        <div class="track-meta-row">
+          <div class="track-meta-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            Order: <strong id="trackOrderId"></strong>
+          </div>
+          <div class="track-meta-item highlight">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="10" rx="2"/><path d="M6 8V5a3 3 0 016 0v3M12 8V5a3 3 0 016 0v3"/></svg>
+            Delivering to: <strong>Table <span id="trackTableNum"></span></strong>
+          </div>
+        </div>
+        <div class="track-steps" id="trackSteps"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN LOGIN -->
+  <div class="app-page hidden" id="adminLoginPage">
+    <div class="cpage">
+      <div class="login-card">
+        <div class="lc-brand"><div class="brand-mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="M200-120v-400q-33 0-56.5-23.5T120-600v-212q0-12 8-20t20-8q12 0 20 8t8 20v132h36v-132q0-12 8-20t20-8q12 0 20 8t8 20v132h36v-132q0-12 8-20t20-8q12 0 20 8t8 20v212q0 33-23.5 56.5T280-520v400h-80Zm280 0v-404q-42-20-61-62.5T400-676q0-63 31.5-113.5T520-840q57 0 88.5 50.5T640-676q0 47-19 89.5T560-524v404h-80Zm200 0v-720q66 0 113 47t47 113v240h-80v320h-80Z"/></svg></div><span class="brand-name">Admin</span></div>
+        <h2>Staff Login</h2>
+        <p class="lc-sub">Access the restaurant management panel</p>
+        <div class="form-grp">
+          <label>Username</label>
+          <input type="text" id="adminUser" class="form-inp" placeholder="Enter username"/>
+        </div>
+        <div class="form-grp">
+          <label>Password</label>
+          <input type="password" id="adminPass" class="form-inp" placeholder="Enter password"/>
+        </div>
+        <div id="loginError" class="err-msg hidden">Invalid credentials. Use: admin / admin123</div>
+        <button class="btn-primary full" onclick="adminLogin()">Sign In</button>
+        <button class="btn-outline full mt8 btn-return-landing" onclick="returnToLanding()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg> Return to Home</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD -->
+  <div class="app-page hidden" id="adminDashboard">
+    <div class="adm-layout">
+      <aside class="adm-aside">
+        <div class="aa-top">
+          <div class="brand sm"><div class="brand-mark sm"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="M200-120v-400q-33 0-56.5-23.5T120-600v-212q0-12 8-20t20-8q12 0 20 8t8 20v132h36v-132q0-12 8-20t20-8q12 0 20 8t8 20v132h36v-132q0-12 8-20t20-8q12 0 20 8t8 20v212q0 33-23.5 56.5T280-520v400h-80Zm280 0v-404q-42-20-61-62.5T400-676q0-63 31.5-113.5T520-840q57 0 88.5 50.5T640-676q0 47-19 89.5T560-524v404h-80Zm200 0v-720q66 0 113 47t47 113v240h-80v320h-80Z"/></svg></div><span class="brand-name" style="font-size:14px;color:#fff">Admin</span></div>
+        </div>
+        <nav class="aa-nav">
+          <button class="aa-navbtn active" id="sb-dashboard" onclick="showAdminSection('dashboard')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard
+          </button>
+          <button class="aa-navbtn" id="sb-addFood" onclick="showAdminSection('addFood')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Add Dish
+          </button>
+          <button class="aa-navbtn" id="sb-manageMenu" onclick="showAdminSection('manageMenu')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3" cy="6" r="1"/><circle cx="3" cy="12" r="1"/><circle cx="3" cy="18" r="1"/></svg>Manage Menu
+          </button>
+          <button class="aa-navbtn" id="sb-orders" onclick="showAdminSection('orders')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>Orders
+          </button>
+        </nav>
+        <button class="aa-navbtn aa-logout" onclick="adminLogout()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Logout
+        </button>
+      </aside>
+
+      <main class="adm-main">
+        <!-- Dashboard -->
+        <div class="adm-sec active-sec" id="section-dashboard">
+          <h2 class="adm-h2">Dashboard</h2>
+          <div class="kpi-row">
+            <div class="kpi"><div class="kpi-n" id="totalItems">0</div><div class="kpi-l">Menu Items</div></div>
+            <div class="kpi"><div class="kpi-n" id="totalOrders">0</div><div class="kpi-l">Total Orders</div></div>
+            <div class="kpi"><div class="kpi-n" id="totalRevenue">₹0</div><div class="kpi-l">Revenue</div></div>
+          </div>
+          <h3 class="adm-h3">Recent Orders</h3>
+          <div class="tbl-scroll">
+            <table class="adm-tbl">
+              <thead><tr><th>Order ID</th><th>Table</th><th>Items</th><th>Total</th><th>Status</th></tr></thead>
+              <tbody id="dashOrdersBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <!-- Add Dish -->
+        <div class="adm-sec hidden" id="section-addFood">
+          <h2 class="adm-h2">Add New Dish</h2>
+          <div class="adm-form-box">
+            <div class="form-row2">
+              <div class="form-grp"><label>Dish Name</label><input type="text" id="newFoodName" class="form-inp" placeholder="e.g. Paneer Butter Masala"/></div>
+              <div class="form-grp"><label>Price (₹)</label><input type="number" id="newFoodPrice" class="form-inp" placeholder="e.g. 220"/></div>
+            </div>
+            <div class="form-row2">
+              <div class="form-grp"><label>Category</label>
+                <select id="newFoodCategory" class="form-inp">
+                  <option value="starters">Starters</option>
+                  <option value="main-course">Main Course</option>
+                  <option value="drinks">Drinks</option>
+                  <option value="desserts">Desserts</option>
+                  <option value="snacks">Snacks</option>
+                </select>
+              </div>
+              <div class="form-grp"><label>Type</label>
+                <select id="newFoodType" class="form-inp">
+                  <option value="veg">Vegetarian</option>
+                  <option value="nonveg">Non-Vegetarian</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-grp"><label>Description</label><input type="text" id="newFoodDesc" class="form-inp" placeholder="Brief description..."/></div>
+            <div class="form-grp"><label>Image URL</label><input type="text" id="newFoodImg" class="form-inp" placeholder="https://... (Unsplash or direct link)"/></div>
+            <div class="form-row2">
+              <div class="form-grp chk-grp"><label><input type="checkbox" id="newFoodRecommended"/> Recommended</label></div>
+              <div class="form-grp chk-grp"><label><input type="checkbox" id="newFoodMostOrdered"/> Most Ordered</label></div>
+            </div>
+            <button class="btn-primary" onclick="addFoodItem()">Add to Menu</button>
+            <div id="addFoodMsg" class="ok-msg hidden">Dish added successfully.</div>
+          </div>
+        </div>
+        <!-- Manage Menu -->
+        <div class="adm-sec hidden" id="section-manageMenu">
+          <h2 class="adm-h2">Manage Menu</h2>
+          <div class="tbl-scroll">
+            <table class="adm-tbl">
+              <thead><tr><th>Image</th><th>Name</th><th>Category</th><th>Type</th><th>Price</th><th>Action</th></tr></thead>
+              <tbody id="menuTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <!-- Orders -->
+        <div class="adm-sec hidden" id="section-orders">
+          <h2 class="adm-h2">Customer Orders</h2>
+          <div class="tbl-scroll">
+            <table class="adm-tbl">
+              <thead><tr><th>Order ID</th><th>Table</th><th>Items</th><th>Total</th><th>Status</th><th>Update</th></tr></thead>
+              <tbody id="ordersTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+</div><!-- /appWrapper -->
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+
+<!-- TOAST NOTIFICATION -->
+<div id="toastNotif" class="toast-notif hidden">
+  <div class="toast-inner">
+    <div class="toast-check">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+    </div>
+    <div class="toast-text">
+      <div class="toast-title" id="toastTitle">Added to cart</div>
+      <div class="toast-sub" id="toastSub">Item added successfully</div>
+    </div>
+    <button class="toast-close" onclick="hideToast()">&#x2715;</button>
+  </div>
+</div>
+
+<!-- DELIVERY POPUP MODAL -->
+<div id="deliveryModal" class="delivery-overlay hidden">
+  <div class="delivery-box">
+    <div class="delivery-anim">
+      <div class="delivery-check">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <div class="delivery-rings"></div>
+    </div>
+    <h2 class="delivery-title">Order Delivered!</h2>
+    <p class="delivery-sub" id="deliverySubText">Your food has arrived at your table.</p>
+    <div class="delivery-items" id="deliveryItems"></div>
+    <div class="delivery-table" id="deliveryTable"></div>
+    <button class="btn-primary delivery-close-btn" onclick="closeDeliveryModal()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+      Enjoy your meal!
+    </button>
+  </div>
+</div>
+
+<!-- liveOrderBar removed - using FAB only -->
+
+<!-- FLOATING TRACK ORDER FAB (appears on menu page after order placed) -->
+<div id="trackOrderFab" class="track-fab hidden" onclick="trackOrder()">
+  <div class="track-fab-inner">
+    <div class="track-fab-pulse"></div>
+    <div class="track-fab-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+      </svg>
+    </div>
+    <div class="track-fab-text">
+      <div class="track-fab-title">Track Order</div>
+      <div class="track-fab-status" id="fabStatus">Processing…</div>
+    </div>
+    <div class="track-fab-chevron">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+    </div>
+  </div>
+  <!-- mini progress bar at bottom -->
+  <div class="track-fab-bar">
+    <div class="track-fab-bar-fill" id="fabBarFill"></div>
+  </div>
+</div>
+
+</body>
+</html>
