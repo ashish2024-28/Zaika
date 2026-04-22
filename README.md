@@ -52,3 +52,6 @@ It helps demonstrate how structured data can be integrated with frontend technol
 
 ## 👨‍💻 Author
 Ayush Kumar
+
+## Team members:-
+Ashish Kumar, Avdhesh Kumar, Aryan Raj, Mayank Ghosh.
